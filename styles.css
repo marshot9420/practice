@@ -1,3 +1,17 @@
+body {
+  height: 1000vh;
+}
+
+#nav-bar {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+
+#navbar-text {
+  font-size: 30px;
+}
+
 #modal {
   display: none;
 }
@@ -42,4 +56,18 @@
 
 #dark-btn {
   cursor: pointer;
+}
+
+.slide-container {
+  width: 300vw;
+  transition: all 1s;
+}
+
+.slide-box {
+  width: 100vw;
+  float: left;
+}
+
+.slide-box img {
+  width: 100%;
 }
