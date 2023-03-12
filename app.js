@@ -1,3 +1,4 @@
+const body = document.querySelector("body");
 const openBtn = document.getElementById("open");
 const closeBtn = document.getElementById("close");
 const modal = document.getElementById("modal");
@@ -30,23 +31,22 @@ let giftCount = 5;
 let transValue = 0;
 let fontValue = 30;
 
-const handleGift = () => {
-  gift.style.display = "none";
-};
+listGroup.style.display = "none";
 
-const handleGiftCount = () => {
-  gift.innerText = `${giftCount}초 이내 구매시 사은품 증정!`;
-  giftCount = giftCount - 1;
-  setTimeout(handleGift, 5000);
-};
-
-const handleDarkMode = () => {
-  darkBtnCount = darkBtnCount + 1;
-  if (darkBtnCount % 2 === 0) {
-    darkBtn.innerText = "Dark";
+const handleListGroup = () => {
+  if (listGroup.style.display === "none") {
+    listGroup.style.display = "flex";
   } else {
-    darkBtn.innerText = "Light";
+    listGroup.style.display = "none";
   }
+};
+
+const handleModalOpen = () => {
+  modal.style.display = "block";
+};
+
+const handleModalClose = () => {
+  modal.style.display = "none";
 };
 
 const handleLoginAlert = (e) => {
@@ -67,8 +67,6 @@ const handleLoginAlert = (e) => {
   }
 };
 
-const handleEmailInput = () => {};
-
 const handlePwInput = () => {
   if (pw.value.length < 8) {
     pwAlert.innerText = "그런 비번 안받습니다. 8자 이상 쓰세요.";
@@ -79,22 +77,23 @@ const handlePwInput = () => {
   }
 };
 
-listGroup.style.display = "none";
-
-const handleListGroup = () => {
-  if (listGroup.style.display === "none") {
-    listGroup.style.display = "flex";
+const handleDarkMode = () => {
+  darkBtnCount = darkBtnCount + 1;
+  if (darkBtnCount % 2 === 0) {
+    darkBtn.innerText = "Dark";
   } else {
-    listGroup.style.display = "none";
+    darkBtn.innerText = "Light";
   }
 };
 
-const handleModalOpen = () => {
-  modal.style.display = "block";
+const handleGift = () => {
+  gift.style.display = "none";
 };
 
-const handleModalClose = () => {
-  modal.style.display = "none";
+const handleGiftCount = () => {
+  gift.innerText = `${giftCount}초 이내 구매시 사은품 증정!`;
+  giftCount = giftCount - 1;
+  setTimeout(handleGift, 5000);
 };
 
 const handleSlider1 = () => {
@@ -119,14 +118,19 @@ const handleSlideNext = () => {
   slideContainer.style.transform = `translateX(${transValue}vw)`;
 };
 
-const handleNavbarFontDown = () => {
-  fontValue = fontValue - 1;
-  navbarBrand.style.fontSize = `${fontValue}px`;
+const handleNavbarFontScroll = () => {
+  if (window.scrollY < 300) {
+    navbarBrand.style.fontSize = `${fontValue}px`;
+  } else if (window.scrollY >= 300 && window.scrollY < 500) {
+    fontValue = fontValue - 1;
+    navbarBrand.style.fontSize = `${fontValue}px`;
+  }
 };
 
-const handleNavbarFontUp = () => {
-  fontValue = fontValue + 1;
-  navbarBrand.style.fontSize = `${fontValue}px`;
+const handleLoremScroll = () => {
+  if (lorem.scrollTop === 188) {
+    alert("다읽음");
+  }
 };
 
 toggler.addEventListener("click", handleListGroup);
@@ -143,5 +147,5 @@ if (transValue < 0) {
   prevBtn.addEventListener("click", handleSlidePrev);
 }
 nextBtn.addEventListener("click", handleSlideNext);
-window.addEventListener("scroll", handleNavbarFontDown);
-window.addEventListener("scroll", handleNavbarFontUp);
+window.addEventListener("scroll", handleNavbarFontScroll);
+lorem.addEventListener("scroll", handleLoremScroll);
