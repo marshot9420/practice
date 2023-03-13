@@ -49,6 +49,12 @@ const handleModalClose = () => {
   modal.style.display = "none";
 };
 
+const handleModalCloseBgClick = (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
 const handleLoginAlert = (e) => {
   if (email.value === "" && pw.value === "") {
     e.preventDefault();
@@ -136,6 +142,7 @@ const handleLoremScroll = () => {
 toggler.addEventListener("click", handleListGroup);
 openBtn.addEventListener("click", handleModalOpen);
 closeBtn.addEventListener("click", handleModalClose);
+modal.addEventListener("click", handleModalCloseBgClick);
 submitBtn.addEventListener("click", handleLoginAlert);
 pw.addEventListener("input", handlePwInput);
 darkBtn.addEventListener("click", handleDarkMode);
